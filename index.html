@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旭祭シフトアプリ</title>
+    <link rel="icon" type="image/x-icon" href="images/shiftapp.png" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="./manifest.json">
+    <script src="js/swRegistration.js"></script>
+    <script src="https://kit.fontawesome.com/bf5561edf5.js" crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HP4TEWWJX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6HP4TEWWJX');
+    </script>
+</head>
+
+<body>
+    <div class="loader">
+        <div class="loader-inner"></div>
+    </div>
+    <div class="content">
+        <div class="row col-11 mx-auto pt-5 text-center">
+            <div>
+                <select id="daySelector">
+                    <option value="1">10月31日</option>
+                    <option value="2">11月1日</option>
+                    <option value="3">11月2日</option>
+                    <option value="4">11月3日</option>
+                    <option value="5">11月4日</option>
+                    <option value="6">11月5日</option>
+                </select>
+                <!-- <button onclick="getSelectedDay()">選択した日を表示</button> -->
+                <input type="text" id="number" name="number" required minlength="6" maxlength="7" size="18"
+                    placeholder="学籍番号を半角で入力" class="text-center">
+
+                <button onclick="getText()">表示</button>
+            </div>
+
+            <div id="name" style="height:50px" class="text-center mt-2"></div>
+        </div>
+        <div>
+            <div id="now" class="text-center"></div>
+            <div id="next" class="text-center"></div>
+        </div>
+        <!-- <div id="animeab">
+        <div id="time" sytle="color:#F44C40;"></div>
+        <div id="line">
+        </div>
+    </div> -->
+        <!-- <a href="https://discord.com/channels/1047724512873041941/1127463565067034634">discord</a> -->
+        <table id="data-table" class="mb-5 pb-5 col-11 mx-auto">
+            <thead>
+                <tr>
+                    <th>時間</th>
+                    <th>シフト</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody class="mb-5">
+                <tr>
+                    <td>8:00 ~ 8:30</td>
+                    <td id="t800"></td>
+                    <td><button class="modal-button" data-index="1">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>8:30 ~ 9:00</td>
+                    <td id="t830"></td>
+                    <td><button class="modal-button" data-index="2">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>9:00 ~ 9:30</td>
+                    <td id="t900"></td>
+                    <td><button class="modal-button" data-index="3">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>9:30 ~ 10:00</td>
+                    <td id="t930"></td>
+                    <td><button class="modal-button" data-index="4">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>10:00 ~ 10:30</td>
+                    <td id="t1000"></td>
+                    <td><button class="modal-button" data-index="5">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>10:30 ~ 11:00</td>
+                    <td id="t1030"></td>
+                    <td><button class="modal-button" data-index="6">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>11:00 ~ 11:30</td>
+                    <td id="t1100"></td>
+                    <td><button class="modal-button" data-index="7">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>11:30 ~ 12:00</td>
+                    <td id="t1130"></td>
+                    <td><button class="modal-button" data-index="8">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>12:00 ~ 12:30</td>
+                    <td id="t1200"></td>
+                    <td><button class="modal-button" data-index="9">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>12:30 ~ 13:00</td>
+                    <td id="t1230"></td>
+                    <td><button class="modal-button" data-index="10">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>13:00 ~ 13:30</td>
+                    <td id="t1300"></td>
+                    <td><button class="modal-button" data-index="11">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>13:30 ~ 14:00</td>
+                    <td id="t1330"></td>
+                    <td><button class="modal-button" data-index="12">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>14:00 ~ 14:30</td>
+                    <td id="t1400"></td>
+                    <td><button class="modal-button" data-index="13">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>14:30 ~ 15:00</td>
+                    <td id="t1430"></td>
+                    <td><button class="modal-button" data-index="14">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>15:00 ~ 15:30</td>
+                    <td id="t1500"></td>
+                    <td><button class="modal-button" data-index="15">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>15:30 ~ 16:00</td>
+                    <td id="t1530"></td>
+                    <td><button class="modal-button" data-index="16">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>16:00 ~ 16:30</td>
+                    <td id="t1600"></td>
+                    <td><button class="modal-button" data-index="17">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>16:30 ~ 17:00</td>
+                    <td id="t1630"></td>
+                    <td><button class="modal-button" data-index="18">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>17:00 ~ 17:30</td>
+                    <td id="t1700"></td>
+                    <td><button class="modal-button" data-index="19">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>17:30 ~ 18:00</td>
+                    <td id="t1730"></td>
+                    <td><button class="modal-button" data-index="20">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>18:00 ~ 18:30</td>
+                    <td id="t1800"></td>
+                    <td><button class="modal-button" data-index="21">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>18:30 ~ 19:00</td>
+                    <td id="t1830"></td>
+                    <td><button class="modal-button" data-index="22">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>19:00 ~ 19:30</td>
+                    <td id="t1900"></td>
+                    <td><button class="modal-button" data-index="23">詳細</button></td>
+                </tr>
+                <tr>
+                    <td>19:30 ~ 20:00</td>
+                    <td id="t1930"></td>
+                    <td><button class="modal-button" data-index="24">詳細</button></td>
+                </tr>
+
+            </tbody>
+            <!-- 他の行も同様に追加 -->
+        </table>
+        <div class="space">
+
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <p id="modal-time">ここに詳細が表示されます。</p>
+                <p id="modal-shift">ここに詳細が表示されます。</p>
+                <p id="modal-plase">ここに詳細が表示されます。</p>
+                <p id="modal-leader">ここに詳細が表示されます。</p>
+                <p id="modal-member">ここに詳細が表示されます。</p>
+            </div>
+        </div>
+        <div id="discordModal" class="modal">
+            <div class="modal-content">
+                <span class="discordclose-button mb-5 mt-3">&times;</span>
+                <div class="text-center mb-2">Discordで報告したい内容を選択してください</div>
+                <div class="text-center mb-3">該当するものがない場合は直接連絡してください </div>
+                <button id="arrival" class="mb-2">到着しました</button>
+                <button id="finish" class="mb-2">終了しました</button>
+                <button id="help" class="mb-2">人が足りません</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <button id="discordModalButton"><i class="fa-brands fa-discord"></i>Discordで報告</button>
+    </div>
+</body>
+<script src="js/script.js"></script>
+<!-- <script src="../js/timeline.js"></script> -->
+
+</html>
