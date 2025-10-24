@@ -1,6 +1,8 @@
 //GASのAPIのURL（各自変更してください。）
 const endpoint =
-  "https://script.google.com/macros/s/AKfycby4Rv0lg9mD2_8k1KGRqCN_VAIDrTMg7d0SZ-R3ukDUnMQDNXcH3Z9dtU_aRmtqDGBE/exec?type=shiftApp";
+"https://script.google.com/macros/s/AKfycby2xoY_7lpMuxwESZ_3CpeVKemdkk9vQrnXSqXfG5B4U7hm6rUZEjKsVy4qHI9pyTS1/exec?type=shiftApp"
+
+// "https://script.google.com/macros/s/AKfycby4Rv0lg9mD2_8k1KGRqCN_VAIDrTMg7d0SZ-R3ukDUnMQDNXcH3Z9dtU_aRmtqDGBE/exec?type=shiftApp";
 // "https://script.google.com/macros/s/AKfycbzPesZNajnjHLjBNKqm660g8-NBueIHJnpcypAETvI1t71oE0MgLyU8p5YbLVL0ntc9/exec";
 // "https://script.google.com/macros/s/AKfycbxQzA52vna2G3Xg2Mu0AZLrntRn4ccKqQo7JLcQ31FHkwk3zGw56Dq1dtzCb8dCITKR/exec";
 // "https://script.google.com/macros/s/AKfycbxWf4nZ22jXM_Bzs9CvBCzCaQqkeHadj5_0rnSCaYuWXoCuuHV9s3Lpt9RKQo5qap1v/exec";
@@ -379,22 +381,22 @@ function getSelectedDay() {
   const selectedDay = daySelector.options[daySelector.selectedIndex].text;
   console.log("選択した日は: " + selectedDay);
   switch (selectedDay) {
-    case "10月31日":
+    case "10月30日":
       dkey = "d1";
       break;
-    case "11月1日":
+    case "10月31日":
       dkey = "d2";
       break;
-    case "11月2日":
+    case "11月1日":
       dkey = "d3";
       break;
-    case "11月3日":
+    case "11月2日":
       dkey = "d4";
       break;
-    case "11月4日":
+    case "11月3日":
       dkey = "d5";
       break;
-    case "11月5日":
+    case "11月4日":
       dkey = "d6";
       break;
     default:
