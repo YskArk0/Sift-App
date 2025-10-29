@@ -1,98 +1,216 @@
-/* モーダル表示用のスタイル */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+/* ========= 全体レイアウト ========= */
+body {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background: #f7f9fb;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
+.content {
+  padding-bottom: 100px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.discordclose-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* テーブルのスタイル */
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-
+/* ========= ローディング画面 ========= */
 .loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8); /* 半透明の背景 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* 他の要素よりも前面に表示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
 }
 
 .loader-inner {
-    border: 4px solid #3498db; /* ローディングアニメーションの色 */
-    border-top: 4px solid #ffffff; /* 背景色 */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 2s linear infinite; /* アニメーションの設定 */
+  border: 6px solid #2195f3;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
+.loader::after {
+  content: "Loading...";
+  font-size: 16px;
+  color: #2195f3;
+  font-weight: 500;
+}
+
+/* ========= テーブル ========= */
+/* ========= テーブル ========= */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ccc; /* 外枠線 */
+}
+
+th {
+  background-color: #2195f3;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  border: 1px solid #0e0e0e; /* 列間の線 */
+}
+
+td {
+  border: 1px solid #0e0e0e; /* 各セルの線 */
+  padding: 8px;
+  text-align: center;
+  font-size: 20px;
+  background-color: #fff;
+}
+
+tr:hover td {
+  background-color: #f2f8ff;
+}
+
+
+/* ========= ボタン ========= */
+button {
+  background-color: #f0f0f0;       /* 淡いグレーで控えめ */
+  color: #333;                     /* 濃いグレー文字で視認性 */
+  border: 1px solid #ccc;          /* 薄い枠線で自然な印象 */
+  padding: 6px 14px;
+  border-radius: 4px;              /* やや角の丸みを残す */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-size: 14px;
+}
+
+/* ホバー時：少し暗くなるだけ */
+button:hover {
+  background-color: #e0e0e0;
+}
+
+/* クリック時：軽い押し込み感 */
+button:active {
+  transform: scale(0.97);
+  background-color: #d5d5d5;
+}
+
+/* ========= モーダル ========= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1500;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close-button,
+.discordclose-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #999;
+  font-size: 26px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.discordclose-button:hover {
+  color: #333;
+}
+
+.modal-content button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ========= Discordモーダル ========= */
+#discordModal .modal-content {
+  text-align: center;
+  padding-top: 40px;
+}
+
+/* ========= セレクタ・入力欄 ========= */
+select, input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+select:focus,
+input[type="text"]:focus {
+  border-color: #2195f3;
+  outline: none;
+  box-shadow: 0 0 4px rgba(33,149,243,0.3);
+}
+
+/* ========= フッター ========= */
 .footer {
-    position: fixed; /* フッターを固定する */
-    left: 0;
-    bottom: 0;
-    width: 100%; /* 画面幅いっぱいに広げる */
-    background-color: #2195f388;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    padding-bottom:50px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #2195f3;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
 }
 
-.space{
-    height:60px;
+.footer button {
+  background: white;
+  color: #2195f3;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 8px 20px;
+}
+
+.footer button:hover {
+  background: #f0f8ff;
+}
+
+.space {
+  height: 80px;
+}
+
+/* ========= レスポンシブ ========= */
+@media (max-width: 600px) {
+  th, td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
 }
